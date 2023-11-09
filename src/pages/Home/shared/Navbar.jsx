@@ -7,7 +7,7 @@ const Navbar = () => {
     </>
     return (
         <>
-            <div className="navbar bg-base-100">
+            <div className="navbar fixed z-10 bg-black bg-opacity-30 max-w-screen-xl text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -18,9 +18,9 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <Link to='/' className="text-xl">
-                        <div>
-                            <img src="https://i.ibb.co/6n74JwT/restaurant-logo-design-template-79169-56-removebg-preview.png" alt="" />
-                            <h2 className='font-extrabold'>Teast Treat </h2>
+                        <div className='flex gap-2 items-center'>
+                            <img className='w-14 h-14' src="https://i.ibb.co/6n74JwT/restaurant-logo-design-template-79169-56-removebg-preview.png" alt="" />
+                            <h2 className='font-extrabold text-yellow-400'>Teast Treat </h2>
                         </div>
                     </Link>
                 </div>
