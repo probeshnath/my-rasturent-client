@@ -10,7 +10,7 @@ const Footer = () => {
 
     return (
         <footer>
-            <div className="footer p-10 bg-base-200 text-base-content">
+            <div className="footer p-10 bg-base-200 grid grid-cols-2 lg:grid-cols-4 place-items-center text-base-content">
                 <nav>
                     <header className="footer-title">Services</header>
                     <a className="link link-hover">Branding</a>
@@ -33,7 +33,7 @@ const Footer = () => {
                 </nav>
                 <form>
                     <header className="footer-title">Newsletter</header>
-                    <fieldset className="form-control w-80">
+                    <fieldset className="form-control ">
                         <label className="label">
                             <span className="label-text">Enter your email address</span>
                         </label>
