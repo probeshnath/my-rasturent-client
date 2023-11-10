@@ -3,7 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 
 const Banner = () => {
     return (
-        <Carousel className='mx-auto' autoPlay>
+        <Carousel className='text-center' autoPlay>
             <div>
                 <img src="https://i.ibb.co/6WL1DHW/food-social-media-web-banner-post-template-542236-59.jpg" />
             </div>
