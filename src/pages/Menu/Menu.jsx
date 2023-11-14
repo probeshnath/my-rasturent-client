@@ -1,7 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import Cover from '../shared/Cover'
-import PopularMenu from '../Home/PopularMenu'
 import useMenu from '../../hooks/UseMenu'
 import SectionTitle from '../../components/SectionTitle'
 import MenuCategory from './MenuCategory'
@@ -28,13 +27,13 @@ const Menu = () => {
         {/* dessert menu item */}
         <MenuCategory
           items={desserts}
-          title="Dessert"
+          title="dessert"
           img="https://i.ibb.co/pxTC6R9/berry-cheesecake.jpg"
         />
          {/* pizza menu item */}
          <MenuCategory
           items={pizza}
-          title="Pizza"
+          title="pizza"
           img="https://i.ibb.co/c8g7Bmv/4812-jpg-wh860.jpg"
         />
 
