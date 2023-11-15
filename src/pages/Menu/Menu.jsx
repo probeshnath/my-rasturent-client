@@ -40,19 +40,19 @@ const Menu = () => {
          {/* drinks menu item */}
          <MenuCategory
           items={drinks}
-          title="Drinks"
+          title="drinks"
           img="https://i.ibb.co/jf8my7m/fresh-cocktails-with-ice-lemon-lime-fruits-generative-ai-188544-12370.jpg"
         />
           {/* salad menu item */}
           <MenuCategory
           items={salad}
-          title="Salads"
+          title="salad"
           img="https://i.ibb.co/TcDpjmJ/Nicoise-Salad-main.jpg"
         />
           {/* soup menu item */}
           <MenuCategory
           items={soup}
-          title="Soups"
+          title="soup"
           img="https://i.ibb.co/Jk34MT3/flat-lay-composition-various-soups-ingredients-flat-lay-composition-various-soups-ingredients-wooden.jpg"
         />
         
