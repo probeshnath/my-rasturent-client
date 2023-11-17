@@ -1,18 +1,21 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../providers/AuthProvider'
+import { IoCartOutline } from "react-icons/io5";
+import useCart from '../../hooks/useCart';
 
 const Navbar = () => {
-    const {user,logoutUser} = useContext(AuthContext)
+    const { user, logoutUser } = useContext(AuthContext)
+    const [cart] = useCart();
 
-    const handleLogout = () =>{
+    const handleLogout = () => {
         logoutUser()
-        .then(()=>{
-            console.log("Logout")
-        })
-        .catch((error) =>{
-            console.log(error)
-        })
+            .then(() => {
+                console.log("Logout")
+            })
+            .catch((error) => {
+                console.log(error)
+            })
     }
 
     const links = <>
@@ -20,16 +23,23 @@ const Navbar = () => {
         <li><Link to="/secret">secret</Link></li>
         <li><Link to="/menu">Our Menu</Link></li>
         <li><Link to="/order/salad">Order</Link></li>
-        { user ? <>
-            
+        <li><Link to="/cart">
+            <button className="btn">
+            <IoCartOutline /> 
+                <div className="badge badge-secondary">{cart?.length}</div>
+            </button>
+            </Link>
+        </li>
+        {user ? <>
+
             <button onClick={handleLogout}>Logout</button>
-            <span>{user?.displayName}</span>
-            </>
-             : 
-        <>
-        <li><Link to="/login">Login</Link></li>
-        <li><Link to="/register">Register</Link></li>
-        </>}
+            {/* <span>{user?.displayName}</span> */}
+        </>
+            :
+            <>
+                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/register">Register</Link></li>
+            </>}
     </>
     return (
         <>
