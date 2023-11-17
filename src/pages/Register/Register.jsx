@@ -1,18 +1,40 @@
 import React, { useContext } from 'react'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form"
 import { AuthContext } from '../../providers/AuthProvider'
+import Swal from 'sweetalert2'
 
 
 const Register = () => {
-    const {createUser} = useContext(AuthContext)
-    const { register, handleSubmit, watch, formState: { errors }, } = useForm()
+    const {createUser,updateUserProfile} = useContext(AuthContext)
+    const { register, handleSubmit,reset, watch, formState: { errors }, } = useForm()
+    const navigate = useNavigate() 
+
     const onSubmit = (data) => { 
         // console.log(data) 
         createUser(data.email, data.password)
         .then(res =>{
             console.log(res.user)
+            if(res.user){
+                updateUserProfile(data.name, data.photoURL)
+                .then(()=>{
+                    console.log("updated user info")
+                    // reset()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "User created Successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                      navigate("/")
+
+                })
+                .catch(error =>{
+                    console.log(error)
+                })
+            }
         })
         .catch(error =>{
             console.log(error)
