@@ -7,6 +7,8 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Secret from "../pages/shared/Secret";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../pages/Dashboard/Cart";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +41,16 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path:"dashboard",
+        element:<Dashboard></Dashboard> ,
+        children:[
+            {
+                path: "cart",
+                element: <Cart />
+            }
+        ]
+    }
 
 ]);
 

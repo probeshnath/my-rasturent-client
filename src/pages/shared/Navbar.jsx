@@ -20,10 +20,10 @@ const Navbar = () => {
 
     const links = <>
         <li><Link to="/">Home</Link></li>
-        <li><Link to="/secret">secret</Link></li>
+        {/* <li><Link to="/secret">secret</Link></li> */}
         <li><Link to="/menu">Our Menu</Link></li>
         <li><Link to="/order/salad">Order</Link></li>
-        <li><Link to="/cart">
+        <li><Link to="/dashboard/cart">
             <button className="btn">
             <IoCartOutline /> 
                 <div className="badge badge-secondary">{cart?.length}</div>
