@@ -8,7 +8,7 @@ import useAuth from '../hooks/useAuth'
 
 const useAxiosSecure = () => {
   const navigate = useNavigate();
-  const {logout} = useAuth()
+  const {logoutUser} = useAuth()
   // request interceptor to add authorization header for every secure call to the api
   axiosSecure.interceptors.request.use(function(config){
     const token = localStorage.getItem('token')
@@ -28,7 +28,7 @@ const useAxiosSecure = () => {
     // console.log("statuserror in the intercepter", status)
     //  for 401 or 403 logout the user and move the user to the login 
     if(status === 401 || status === 403){
-      await logout()
+      await logoutUser()
       navigate("/login")
     }
     return Promise.reject(error)
