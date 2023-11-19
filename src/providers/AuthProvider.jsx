@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { createContext } from "react"
 import {GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile} from 'firebase/auth'
 import {app} from '../firebase/firebase.config'
+import useAxiosPublic from '../hooks/useAxiosPublic'
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
@@ -10,6 +11,7 @@ const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [loading,setLoading]= useState(true)
     const googleProvider = new GoogleAuthProvider()
+    const axiosPublic = useAxiosPublic()
 
     const createUser = (email,password) =>{
       setLoading(true)
@@ -45,11 +47,27 @@ const AuthProvider = ({children}) => {
         setUser(currentUser)
         setLoading(false)
         console.log("current User", currentUser)
+
+        // jwt
+        if(currentUser){
+          // create jwt token
+          const userInfo = {email: currentUser.email}
+          axiosPublic.post("/jwt", userInfo)
+          .then(res =>{
+            if(res.data.token){
+              localStorage.setItem("token", res.data.token);
+            }
+          })
+
+        }else{
+          // so someting when current user null remove token
+          localStorage.removeItem("token")
+        }
       })
       return () =>{
         return useSubscribe()
       }
-    },[])
+    },[axiosPublic])
 
 
     const authInfo = {

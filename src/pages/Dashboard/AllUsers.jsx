@@ -7,23 +7,44 @@ import Swal from 'sweetalert2'
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure()
-    const { data: users = [],refetch } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get("/users");
             return res.data;
         }
+        // ,{
+        //     headers:{
+        //         authorization : `Bearer ${localStorage.getItem('token')}`
+        //     }
+        // }
     })
 
     // admin user
-    const handleMakeAdmin = (user) =>{
+    const handleMakeAdmin = (user) => {
         // 
-        console.log('"admin user')
+        // console.log('"admin user')
+        axiosSecure.patch(`/users/admin/${user._id}`)
+            .then(res => {
+                console.log(res.data)
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: ` ${user.name} is Admin Now`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+
+
     }
 
 
     // handle delete user
-    const handleDeleteUser = (user) =>{
+    const handleDeleteUser = (user) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -41,11 +62,11 @@ const AllUsers = () => {
                         // console.log(res.data)
                         if (res.data.deletedCount > 0) {
                             refetch()
-                              Swal.fire({
+                            Swal.fire({
                                 title: "Deleted!",
                                 text: "Your file has been deleted.",
                                 icon: "success"
-                              });
+                            });
                         }
                     })
                     .catch(error => {
@@ -80,12 +101,15 @@ const AllUsers = () => {
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>
                                     <td>
-                                        <button onClick={() => handleMakeAdmin(user)} className="btn"><FaUser className='text-blue-600 text-xl' /></button>
-                                     </td>
+                                        {
+                                            user.role === "admin" ? "Admin" : <button onClick={() => handleMakeAdmin(user)} className="btn"><FaUser className='text-blue-600 text-xl' /></button>
+                                        }
+
+                                    </td>
 
                                     <td>
                                         <button onClick={() => handleDeleteUser(user)} className="btn"><MdDelete className='text-red-600 text-xl' /></button>
-                                     </td>
+                                    </td>
                                 </tr>
                             ))
                         }
