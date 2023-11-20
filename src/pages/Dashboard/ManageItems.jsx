@@ -33,6 +33,8 @@ const ManageItems = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                }else{
+                    console.log("error")
                 }
 
 
