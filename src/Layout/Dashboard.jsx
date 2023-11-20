@@ -27,9 +27,9 @@ const Dashboard = () => {
 
                             <li> <NavLink to="/dashboard/cart"> <FaShoppingCart />  My Cart {cart?.length}</NavLink></li>
                             <li> <NavLink to="/dashboard/userHome"> <IoMdHome />  User Home</NavLink></li>
-                            <li> <NavLink to="/dashboard/reservation"> <TbReservedLine />  Reservation</NavLink></li>
+                            <li> <NavLink to="/dashboard/paymentHistory"> <TbReservedLine />  Payment History</NavLink></li>
                             <li> <NavLink to="/dashboard/review"> <IoMdAdd />  Review</NavLink></li>
-                            <li> <NavLink to="/dashboard/userHome"> <IoIosList /> My Bookings</NavLink></li>
+                            <li> <NavLink to="/dashboard/paymentHistory"> <IoIosList /> My Payment History</NavLink></li>
                         </>
                     }
                     <div className='divider'></div>
