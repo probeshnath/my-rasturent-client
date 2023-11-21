@@ -45,7 +45,7 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
     const useSubscribe =  onAuthStateChanged(auth,currentUser =>{
         setUser(currentUser)
-        setLoading(false)
+        // setLoading(false)
         console.log("current User", currentUser)
 
         // jwt
@@ -56,12 +56,14 @@ const AuthProvider = ({children}) => {
           .then(res =>{
             if(res.data.token){
               localStorage.setItem("token", res.data.token);
+              setLoading(false)
             }
           })
 
         }else{
           // so someting when current user null remove token
           localStorage.removeItem("token")
+          setLoading(false)
         }
       })
       return () =>{

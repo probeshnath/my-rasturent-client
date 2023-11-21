@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom'
 import { AuthContext } from '../../providers/AuthProvider'
 import { IoCartOutline } from "react-icons/io5";
 import useCart from '../../hooks/useCart';
+import useAdmin from '../../hooks/useAdmin';
 
 const Navbar = () => {
     const { user, logoutUser } = useContext(AuthContext)
     const [cart] = useCart();
+    const [isAdmin] = useAdmin()
 
     const handleLogout = () => {
         logoutUser()
@@ -20,7 +22,12 @@ const Navbar = () => {
 
     const links = <>
         <li><Link to="/">Home</Link></li>
-        {/* <li><Link to="/secret">secret</Link></li> */}
+        {
+            user && isAdmin && <li><Link to="/dashboard/admineHome">DashBoard</Link></li>
+        }
+        {
+            user && !isAdmin && <li><Link to="/dashboard/userHome">DashBoard</Link></li>
+        }
         <li><Link to="/menu">Our Menu</Link></li>
         <li><Link to="/order/salad">Order</Link></li>
         <li><Link to="/dashboard/cart">
