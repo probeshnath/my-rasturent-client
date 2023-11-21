@@ -81,7 +81,7 @@ const AdminHome = () => {
                         <FaDollarSign className='text-3xl' />
                     </div>
                     <div className="stat-title">Revenue</div>
-                    <div className="stat-value"> ${stats?.revenue}</div>
+                    <div className="stat-value"> ${stats?.revenue?.toFixed(2)}</div>
                     <div className="stat-desc">Jan 1st - Feb 1st</div>
                 </div>
 

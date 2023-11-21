@@ -32,8 +32,8 @@ const Navbar = () => {
         <li><Link to="/order/salad">Order</Link></li>
         <li><Link to="/dashboard/cart">
             <button className="btn">
-            <IoCartOutline /> 
-                <div className="badge badge-secondary">{cart?.length}</div>
+            <IoCartOutline className='text-2xl' /> 
+                <div className="badge badge-secondary -my-10">{cart?.length}</div>
             </button>
             </Link>
         </li>
@@ -68,7 +68,7 @@ const Navbar = () => {
                     </Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="menu items-center menu-horizontal px-1">
                         {links}
                     </ul>
                 </div>
